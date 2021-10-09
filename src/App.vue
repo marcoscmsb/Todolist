@@ -9,7 +9,6 @@
       p-8
       mx-auto
       mt-20
-      
     "
   >
     <div>
@@ -50,8 +49,9 @@
 
     <app-btn class="mx-auto" @click="salvar">Salvar</app-btn>
   </div>
-
-  <TabelaTarefas :tarefas="tarefas"></TabelaTarefas>
+  <div class="w-1/3 mx-auto border-2 border-gray-300 mt-10">
+    <TabelaTarefas :tarefas="tarefas"></TabelaTarefas>
+  </div>
 </template>
 
 <script>
