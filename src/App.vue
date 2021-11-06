@@ -69,6 +69,7 @@
 <script>
 import TabelaTarefas from "./components/TabelaTarefas.vue";
 import AppBtn from "./components/AppBtn.vue";
+import axios from "axios";
 export default {
   components: {
     TabelaTarefas,
@@ -82,10 +83,23 @@ export default {
     };
   },
   methods: {
-    salvar() {
-      this.tarefas.push(Object.assign({}, this.tarefa)); // deep copy
+  async salvar() {
+      //this.tarefas.push(Object.assign({}, this.tarefa)); // deep copy
+      // requisição post /tarefas
+      await axios.post("http://localhost:3000/tarefas", this.tarefa)
+      this.tarefa = {}
+      this.buscarTodos()
     },
+    async buscarTodos() {
+    //buscar lista de tarefas pela API
+    // requisição GET /tarefes -> AXIOS
+    let resp = await axios.get("http://localhost:3000/tarefas")
+    this.tarefas = resp.data
+    }
   },
+  async mounted() {
+    this.buscarTodos()
+  }
 };
 </script>
 
